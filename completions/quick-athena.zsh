@@ -2,17 +2,17 @@ if [[ ! -o interactive ]]; then
     return
 fi
 
-compctl -K _sub sub
+compctl -K _quick-athena quick-athena
 
-_sub() {
+_quick-athena() {
   local word words completions
   read -cA words
   word="${words[2]}"
 
   if [ "${#words}" -eq 2 ]; then
-    completions="$(sub commands)"
+    completions="$(quick-athena commands)"
   else
-    completions="$(sub completions "${word}")"
+    completions="$(quick-athena completions "${word}")"
   fi
 
   reply=("${(ps:\n:)completions}")
